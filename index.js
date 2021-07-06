@@ -94,7 +94,7 @@ app.post("/api/persons", (request, response) => {
 app.put("/api/persons/:id", (request, response) => {
   const id = Number(request.params.id)
   let person = phonebook.find(p => p.id === id)
-  person = {...person, number: request.params.number}
+  person = {...person, number: request.body.number}
   phonebook = phonebook.map(p => p.id !== id ? p : person)
   response.json(person)
 })
