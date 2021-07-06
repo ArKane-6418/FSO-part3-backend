@@ -89,6 +89,16 @@ app.post("/api/persons", (request, response) => {
   response.json(phonebook)
 })
 
+// PUT request
+
+app.put("/api/persons/:id", (request, response) => {
+  const id = Number(request.params.id)
+  let person = phonebook.find(p => p.id === id)
+  person = {...person, number: request.number}
+  phonebook = phonebook.map(p => p.id !== id ? p : person)
+  response.json(person)
+})
+
 // DELETE request
 
 app.delete("/api/persons/:id", (request, response) => {
